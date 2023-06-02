@@ -13,6 +13,7 @@ class sendImagedata : public QObject
     Q_OBJECT
 public:
     explicit sendImagedata(QObject *parent = nullptr);
+    ~sendImagedata();
 
 signals:
     void hasconnect();
@@ -32,7 +33,6 @@ public slots:
 private:
     QTcpSocket *Socket;
     qint64 totalBytes;    // 发送数据的总大小
-    QString fileName;     // 保存文件路径
     QByteArray outBlock;  // 数据缓冲区，即存放每次要发送的数据块
 
     QScreen *screen = nullptr;

@@ -1,12 +1,13 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include "imagewidget.h"
 #include <QWidget>
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QThread>
 #include <QQueue>
+#include <QLabel>
+#include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -33,10 +34,11 @@ private slots:
 
 private:
     Ui::Widget *ui;
-    ImageWidget *imagewidget;
 
     QTcpServer Server;
     QTcpSocket *Socket = nullptr;
+    QLabel *imagelabel;
+    QVBoxLayout *layout;
 
     QQueue<QString *> imagedatas;
 };

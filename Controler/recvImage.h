@@ -11,6 +11,7 @@ class recvImage : public QThread
     Q_OBJECT
 public:
     explicit recvImage(QTcpSocket *socket,QObject *parent = nullptr);
+    ~recvImage();
 signals:
     void Done();
     void recvOk(QString *);

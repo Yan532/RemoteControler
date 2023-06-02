@@ -23,6 +23,12 @@ FORMS += \
     imagewidget.ui \
     widget.ui
 
+INCLUDEPATH += D:\opencv\build\include \
+               D:\opencv\build\include\opencv2
+
+LIBS += D:\opencv\build\x64\vc16\lib\opencv_world470.lib \
+        D:\opencv\build\x64\vc16\lib\opencv_world470d.lib
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

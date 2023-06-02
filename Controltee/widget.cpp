@@ -34,6 +34,10 @@ Widget::Widget(QWidget *parent)
 Widget::~Widget()
 {
     delete ui;
+    timer->stop();
+    send_thread->quit();
+    send_thread->wait();
+    send_thread->deleteLater();
 }
 
 void Widget::hasconnect(){
@@ -67,6 +71,6 @@ void Widget::on_LinkButton_clicked()
 void Widget::on_ShareButton_clicked()
 {
     send_thread->start();
-    timer->start(1000/30);
+    timer->start(5000);
 }
 

@@ -10,6 +10,12 @@ recvImage::recvImage(QTcpSocket *socket,QObject *parent)
 
 }
 
+recvImage::~recvImage(){
+    this->quit();
+    this->wait();
+    this->deleteLater();
+}
+
 void recvImage::run(){
     qDebug()<<"run thread";
     connect(Socket,&QTcpSocket::readyRead,this,[=]{
