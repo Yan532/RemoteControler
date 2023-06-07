@@ -9,22 +9,30 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Blockstruct.cpp \
+    Controler.cpp \
+    Controltee.cpp \
+    Imagewidget.cpp \
+    Socket.cpp \
+    Startwidget.cpp \
+    localhost.cpp \
     main.cpp \
-    sendimagedata.cpp \
-    widget.cpp
+    windows_eventapi.cpp
 
 HEADERS += \
-    sendimagedata.h \
-    widget.h
+    Blockstruct.h \
+    Controler.h \
+    Controltee.h \
+    Imagewidget.h \
+    RemoteEvent.h \
+    Socket.h \
+    Startwidget.h \
+    localhost.h \
+    windows_eventapi.h
 
 FORMS += \
-    widget.ui
-
-INCLUDEPATH += D:\opencv\build\include \
-               D:\opencv\build\include\opencv2
-
-LIBS += D:\opencv\build\x64\vc16\lib\opencv_world470.lib \
-        D:\opencv\build\x64\vc16\lib\opencv_world470d.lib
+    Imagewidget.ui \
+    Startwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
