@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QDebug>
-#include <QDataStream>
 
 #define INFO_TYPE   0x01
 #define EVENT_TYPE  0x02

@@ -18,9 +18,9 @@ public:
     //void keyReleaseEvent(QKeyEvent *e);
 
     Q_INVOKABLE void finish();
-    Q_INVOKABLE void mousePressed(const QPointF &position);
-    Q_INVOKABLE void mouseReleased(const QPointF &position);
-    Q_INVOKABLE void mouseMoved(const QPointF &position);
+    Q_INVOKABLE void mousePressed(const QPoint &position);
+    Q_INVOKABLE void mouseReleased(const QPoint &position);
+    Q_INVOKABLE void mouseMoved(const QPoint &position);
     Q_INVOKABLE void requestNewConnection(const QString &address);
     //Q_INVOKABLE void KeyInputed(int key);
     //int Translatekey(int key);
@@ -31,7 +31,7 @@ signals:
     void needUpdate();
 
 private:
-    inline void sendRemoteEvent(RemoteEvent::EventType type, const QPointF &position);
+    inline void sendRemoteEvent(RemoteEvent::EventType type, const QPoint &position);
 
     Socket *m_socket;
     ImageWidget *imagewidget = nullptr;

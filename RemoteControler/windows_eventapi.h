@@ -6,9 +6,9 @@
 class Windows_eventapi
 {
 public:
-    static void mousePress(const QPointF &pos);
-    static void mouseRelease(const QPointF &pos);
-    static void mouseMove(const QPointF &pos);
+    static void mousePress(const QPoint &pos);
+    static void mouseRelease(const QPoint &pos);
+    static void mouseMove(const QPoint &pos);
     //static void keyPress(const int &key);
     //static void keyRelease(const int &key);
 };

@@ -12,6 +12,8 @@ ImageWidget::ImageWidget(QWidget *parent) :
     layout = new QVBoxLayout;
     layout->addWidget(imagelabel);
     this->setLayout(layout);
+    this->setMouseTracking(true);
+    this->imagelabel->setMouseTracking(true);
 }
 
 ImageWidget::~ImageWidget()
@@ -20,16 +22,13 @@ ImageWidget::~ImageWidget()
 }
 
 void ImageWidget::mouseMoveEvent(QMouseEvent *e){
-    //qDebug() << e->pos();
     emit move_send(e->pos());
 }
 
 void ImageWidget::mousePressEvent(QMouseEvent *e){
-    //qDebug() << e->pos();
     emit press_send(e->pos());
 }
 
 void ImageWidget::mouseReleaseEvent(QMouseEvent *e){
-   // qDebug() << e->pos();
     emit release_send(e->pos());
 }

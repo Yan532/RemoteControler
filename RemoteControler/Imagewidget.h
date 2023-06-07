@@ -25,9 +25,9 @@ public:
     }
 
 signals:
-    void move_send(const QPointF &);
-    void press_send(const QPointF &);
-    void release_send(const QPointF &);
+    void move_send(const QPoint &);
+    void press_send(const QPoint &);
+    void release_send(const QPoint &);
 
 protected:
     void mouseMoveEvent(QMouseEvent *e) override;

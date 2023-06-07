@@ -39,21 +39,18 @@ void Controller::finish()
     QMetaObject::invokeMethod(m_socket, "abort");
 }
 
-void Controller::mousePressed(const QPointF &position)
+void Controller::mousePressed(const QPoint &position)
 {
-    qDebug() << position;
     sendRemoteEvent(RemoteEvent::EventType::Pressed, position);
 }
 
-void Controller::mouseReleased(const QPointF &position)
+void Controller::mouseReleased(const QPoint &position)
 {
-    qDebug() << position;
     sendRemoteEvent(RemoteEvent::EventType::Released, position);
 }
 
-void Controller::mouseMoved(const QPointF &position)
+void Controller::mouseMoved(const QPoint &position)
 {
-    qDebug() << position;
     sendRemoteEvent(RemoteEvent::EventType::Moved, position);
 }
 
@@ -62,15 +59,13 @@ void Controller::requestNewConnection(const QString &address)
     QHostAddress hostAddress(address);
     //有效且不为本机地址
     if (!hostAddress.isNull() && !Localhost::isLocalAddress(hostAddress)) {
-        imagewidget->show();
         QMetaObject::invokeMethod(m_socket, "abort");
         QMetaObject::invokeMethod(m_socket, "connectHost", Q_ARG(QHostAddress, hostAddress), Q_ARG(quint16, 43800));
     }
 }
 
-void Controller::sendRemoteEvent(RemoteEvent::EventType type, const QPointF &position)
+void Controller::sendRemoteEvent(RemoteEvent::EventType type, const QPoint &position)
 {
-    qDebug() << position;
     RemoteEvent event(type, position);
     QMetaObject::invokeMethod(m_socket, "writeToSocket", Q_ARG(RemoteEvent, event));
 }

@@ -29,10 +29,9 @@ void Controltee::finish()
 
 void Controltee::processEvent(const RemoteEvent &ev)
 {
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect screenRect = screen->geometry();
-    QPoint localPos(ev.position().x() * 65536 / screenRect.width(),
-                     ev.position().y() * 65536 / screenRect.height());
+    QRect screenRect = qApp->primaryScreen()->geometry();
+    QPoint localPos(ev.position().x() * screenRect.width(),
+                     ev.position().y() * screenRect.height());
 
     switch (ev.type())
     {

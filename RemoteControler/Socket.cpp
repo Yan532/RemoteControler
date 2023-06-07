@@ -1,6 +1,5 @@
 #include "remoteevent.h"
 #include "socket.h"
-#include <QDataStream>
 
 Socket::Socket(QObject *parent)
     : QTcpSocket (parent)
@@ -27,24 +26,23 @@ void Socket::writeToSocket(const DataBlock &block)
 {
     QByteArray data;
     QDataStream out(&data, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_12);
+    out.setVersion(QDataStream::Qt_6_5);
     out << block;
     write(data);
-    data.clear();
 }
 
 void Socket::writeToSocket(const RemoteEvent &event)
 {
     QByteArray data;
     QDataStream out(&data, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_12);
+    out.setVersion(QDataStream::Qt_6_5);
     out << event;
     BlockHeader header = { EVENT_TYPE, qint32(data.size()) };
     DataBlock block = { header, data };
     out.device()->seek(0);
     out << block;
     write(data);
-    data.clear();
+    flush();
 }
 
 void Socket::processRecvBlock()
@@ -52,7 +50,7 @@ void Socket::processRecvBlock()
     if (m_recvHeader.isEmpty() && m_recvData.size() > 0) {
         BlockHeader header;
         QDataStream in(&m_recvData, QIODevice::ReadOnly);
-        in.setVersion(QDataStream::Qt_5_12);
+        in.setVersion(QDataStream::Qt_6_5);
         in >> header;
 
         if (header.isEmpty())
@@ -76,7 +74,7 @@ void Socket::processRecvBlock()
     } else if (block.header.type == EVENT_TYPE) {
         RemoteEvent event;
         QDataStream in(block.data);
-        in.setVersion(QDataStream::Qt_5_12);
+        in.setVersion(QDataStream::Qt_6_5);
         in >> event;
         emit hasEventData(event);
     }
