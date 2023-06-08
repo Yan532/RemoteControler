@@ -7,8 +7,9 @@
 
 class Socket;
 class RemoteEvent;
+class Listener;
 
-class Controltee : public QTcpServer
+class Controltee : public QObject
 {
     Q_OBJECT
 
@@ -17,6 +18,7 @@ public:
     ~Controltee();
 
     Q_INVOKABLE void finish();
+    int Translatekey(int k);
 
 signals:
     void connected();
@@ -27,10 +29,12 @@ public slots:
 
 protected:
     void timerEvent(QTimerEvent *event);
-    void incomingConnection(qintptr socketDescriptor);
 
 private:
-    Socket *m_controlled = nullptr;
+    Listener *screenshot_listener;
+    Listener *event_listener;
+    Socket *screenshot_socket;
+    Socket *event_socket;
     QPixmap new_pixmap;
     QPixmap old_pixmap;
     int m_timerId = 0;

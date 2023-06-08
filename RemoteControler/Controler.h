@@ -14,16 +14,16 @@ class Controller : public QObject
 public:
     explicit Controller(QObject *parent = nullptr);
 
-    //void keyPressEvent(QKeyEvent *e);
-    //void keyReleaseEvent(QKeyEvent *e);
-
     Q_INVOKABLE void finish();
-    Q_INVOKABLE void mousePressed(const QPoint &position);
-    Q_INVOKABLE void mouseReleased(const QPoint &position);
+    Q_INVOKABLE void mouseLeftPressed(const QPoint &position);
+    Q_INVOKABLE void mouseRightPressed(const QPoint &position);
+    Q_INVOKABLE void mouseRightReleased(const QPoint &position);
+    Q_INVOKABLE void mouseLeftReleased(const QPoint &position);
     Q_INVOKABLE void mouseMoved(const QPoint &position);
     Q_INVOKABLE void requestNewConnection(const QString &address);
-    //Q_INVOKABLE void KeyInputed(int key);
-    //int Translatekey(int key);
+    Q_INVOKABLE void KeyInputed(const int &key);
+    Q_INVOKABLE void KeyReleased(const int &key);
+
 
 signals:
     void connected();
@@ -31,9 +31,13 @@ signals:
     void needUpdate();
 
 private:
-    inline void sendRemoteEvent(RemoteEvent::EventType type, const QPoint &position);
+    inline void sendRemoteEvent_m(RemoteEvent::EventType type, const QPoint &position);
+    inline void sendRemoteEvent_k(RemoteEvent::EventType type, const int &key);
 
-    Socket *m_socket;
+    Socket *pixmap_socket;
+    Socket *event_socket;
+    QThread *pixmap_thread;
+    QThread *event_thread;
     ImageWidget *imagewidget = nullptr;
 };
 

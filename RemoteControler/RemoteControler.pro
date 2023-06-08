@@ -15,6 +15,7 @@ SOURCES += \
     Imagewidget.cpp \
     Socket.cpp \
     Startwidget.cpp \
+    listener.cpp \
     localhost.cpp \
     main.cpp \
     windows_eventapi.cpp
@@ -27,6 +28,7 @@ HEADERS += \
     RemoteEvent.h \
     Socket.h \
     Startwidget.h \
+    listener.h \
     localhost.h \
     windows_eventapi.h
 

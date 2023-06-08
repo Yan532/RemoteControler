@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<DataBlock>("DataBlock");
     qRegisterMetaType<QAbstractSocket::SocketState>("SocketState");
     qRegisterMetaType<QHostAddress>("QHostAddress");
-    qRegisterMetaType<RemoteEvent>("RemoteEvent");\
+    qRegisterMetaType<RemoteEvent>("RemoteEvent");
     qRegisterMetaType<QString>("QString");
     Controltee *controltee = new Controltee;
     Controller *controller = new Controller;
